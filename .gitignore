@@ -1,0 +1,9 @@
+# Python Related
+.pytest_cache
+**/__pycache__
+**/.pytest_cache
+
+# Editor Related
+.venv
+.vscode
+.idea
