@@ -1,9 +1,10 @@
 import csv
-from algorithms.bubbleSort import bubble_sort
+from algorithms.mergeSort import merge_sort
+
 
 def read_csv(file_path):
     data_list = []
-    with open(csv_file_path, 'r', newline='') as file:
+    with open(file_path, "r", newline="") as file:
         reader = csv.reader(file)
 
         for row in reader:
@@ -12,17 +13,27 @@ def read_csv(file_path):
     header = data_list.pop(0)
     return header, data_list
 
+
 def write_csv(file_path, header, data_list):
-    with open(file_path, 'w', newline='') as file:
+    with open(file_path, "w", newline="") as file:
         writer = csv.writer(file)
         writer.writerow(header)
         writer.writerows(data_list)
 
 
-if __name__ == '__main__':
-    csv_file_path = 'tests/dummy_data.csv'
-    output_file_path = 'output/output_data.csv'
+if __name__ == "__main__":
+    import os
 
-    header, data = read_csv(csv_file_path)
-    write_csv(output_file_path, header, bubble_sort(data, index=0))
-    
+    DUMMY_CSV_FILE_PATH = os.path.join(
+        os.path.dirname(__file__), "tests/dummy_data.csv"
+    )
+    OUTPUT_CSV_FILE_PATH = os.path.join(
+        os.path.dirname(__file__), "output/output_data.csv"
+    )
+
+    header, data = read_csv(DUMMY_CSV_FILE_PATH)
+    write_csv(
+        OUTPUT_CSV_FILE_PATH,
+        header,
+        merge_sort(data, key=lambda x: x[2], reversed=True),
+    )
