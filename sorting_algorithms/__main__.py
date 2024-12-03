@@ -1,5 +1,6 @@
 import csv
 from algorithms.mergeSort import merge_sort
+from algorithms.quickSort import quick_sort
 
 
 def read_csv(file_path):
